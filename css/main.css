@@ -1,0 +1,400 @@
+/**
+320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV**/
+
+/*GENERAL STYLES*/
+body {
+    font-family: Londrina solid;
+}
+
+header {
+    margin: auto;
+    padding: 2% 0;
+    text-align: center;
+}
+
+#container {
+    margin: 0;
+    padding: 2.5% 5%;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+body h3 {
+    font-size: 130%;
+    margin: 2.5% 0 1% 0;
+}
+
+p {
+    margin: .5% 0 1% 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#name, #attribute, #attribute_list, #origin, #job, #class {
+    margin: auto;
+}
+
+/*INPUT & SELECT FIELD STYLES*/
+#name_field {
+    width: 90%;
+}
+
+input, select {
+    font-family: Londrina solid;
+    font-size: 125%;
+    width: fit-content;
+    outline: none;
+    padding: 1.5%;
+}
+
+select {
+    margin: 2% 0;
+}
+
+/*BUTTON STYLES*/
+.button_wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    height: fit-content;
+}
+
+button {
+    font-family: Londrina solid;
+    font-size: 125%;
+    width: 30%;
+    margin: 5% 0;
+    padding: 1.5%;
+}
+
+/*ATTRIBUTE STYLES*/
+#attribute_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    margin: auto;
+    padding: 0;
+}
+
+.attributes {
+    width: 18%;
+}
+
+.attributes h3 {
+    margin: 8% 0 5% 0;
+}
+
+.modifiers {
+    font-size: 125%;
+    margin: 10%;
+}
+
+#ability_list {
+    padding: 1.5%;
+}
+
+/*MIRACLE CARD STYLES*/
+.miracle_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    margin: 2.5% auto;
+    padding: 3%;
+}
+
+.miracle_card .info {
+    height: 25%;
+}
+
+/* Miracle card button style */
+.confirm {
+    margin: 0;
+}
+
+/*BACKGROUND & STAT STYLES*/
+#attribute_description, #background, #derived_stats, #origin_pick, #job_pick, #class_pick {
+    padding: 1.5%;
+    margin: 2.5% 0;
+}
+
+.stats_ul, #ability_wrapper ul {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    padding: 0;
+}
+
+.stats_li, #ability_wrapper li {
+    margin: .5%;
+}
+
+#first_pick {
+    text-align: center;
+    font-size: 150%;
+    margin-bottom: 3%;
+    padding: 2.5% 0;
+}
+
+#gold {
+    height: fit-content;
+    width: 100%;
+}
+
+#gold h3 {
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 0 auto;
+}
+
+#gold_wrapper {
+    text-align: center;
+    width: 100%;
+    font-size: 125%;
+    margin: 0 auto 0 auto;
+}
+
+#pdf {
+    text-align: center;
+    margin: 2.5% auto;
+    height: fit-content;
+    width: 90%;
+}
+
+#make_pdf {
+    margin: 2.5% auto;
+    width: 40%;
+}
+
+/*COLOR AND BORDER STYLES*/
+h1 {
+    color: brown;
+}
+
+input, select, .attributes, #ability_list, .miracle_card, #attribute_description, #background, #derived_stats, #origin_pick, #job_pick, #class_pick, #gold, #first_pick  {
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+}
+
+input:focus, select:focus {
+    background-color: blanchedalmond;
+}
+
+button {
+    color: white;
+    background-color: brown;
+    border: none;
+    border-radius: 10px;
+}
+
+button:active {
+    border: 1 px solid brown;
+    color: brown;
+    background-color: white;
+}
+
+.attributes h3 {
+    color: white;
+    background-color: brown;
+}
+
+#attribute_description, #background, #derived_stats, #origin_pick, #job_pick, #class_pick {
+    padding: 1.5%;
+    margin: 2.5% 0;
+}
+
+
+
+/*MEDIA QUERIES*/
+@media screen and (min-width:768px) {
+    header{
+        font-size: 150%;
+        width: 100%;
+        padding: 0;
+    }
+    
+    body h3 {
+        font-size: 160%;
+        margin-bottom: .5%;
+    }
+
+    p {
+        font-size: 150%;
+        margin: .5% 0 1% 0;
+    }
+    
+    #container{
+        margin: 0;
+        padding: 1% 10%;
+    }
+    
+    #name_field {
+        width: 70%;
+    }
+
+    input, select {
+        margin: 0 0 1.5% 0;
+    }
+    
+    input, select, button, .modifiers, .miracle_card .info, #gold_wrapper {
+        font-size: 140%;
+    }
+
+    #attribute_description, #ability_list, #origin_pick, #class_pick, #gold {
+        margin: 2.5% auto;
+    }
+    
+    button {
+        margin: 1% 3%;
+        width: 15%;
+    }
+
+    .button_wrapper {
+        margin: 2.5% auto;
+    }
+   
+    .attributes {
+        width: 15%;
+    }
+
+    #stat_row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #background, #derived_stats {
+        width: 45%;
+    }
+    
+    .stats_li, #ability_wrapper li {
+        font-size: 120%;
+    }
+
+    #gold_wrapper {
+        width: 70%;
+    }
+    
+    #pdf {
+        width: 70%;
+    }
+
+    #make_pdf {
+        margin: 0 auto;
+        width: fit-content;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    #container{
+        padding: 1% 25%;
+    }
+
+    .modifiers {
+        font-size: 180%;
+    }
+
+    #new_text {
+        font-size: 100%;
+    }
+}
+
+@media print {
+    @page :right {
+        size: letter portrait;
+        margin: 10%;
+    }
+    
+    header{
+        font-size: 90%;
+        width: 100%;
+        padding: 0;
+    }
+    
+    body h3 {
+        font-size: 90%;
+        margin-bottom: .5%;
+    }
+
+    p {
+        font-size: 70%;
+        margin: .5% 0 1% 0;
+    }
+    
+    #container {
+        margin: 0;
+        padding: 1% 10%;
+    }
+    
+    #name_field {
+        font-size: 120%;
+        width: 80%;
+    }
+
+    input, select {
+        margin: 0 0 1.5% 0;
+    }
+    
+    input, select, button, .modifiers, .miracle_card .info, #gold_wrapper {
+        font-size: 80%;
+    }
+
+    #attribute_description, #ability_list, #origin_pick, #class_pick, #gold {
+        margin: 2.5% auto;
+    }
+    
+    button {
+       display: none;
+    }
+
+    #pdf { 
+        display: none;
+     }
+
+    .button_wrapper {
+        margin: 0 auto 1% auto;
+        width: 30%;
+    }
+
+    #attribute_list .attributes h3 {
+        color: white;
+        background-color: brown;
+        margin: 8% 0 5% 0;
+    }
+   
+    .attributes {
+        width: 15%;
+    }
+
+    #stat_row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #background, #derived_stats {
+        width: 45%;
+    }
+    
+    .stats_li, #ability_wrapper li {
+        font-size: 80%;
+    }
+
+    #gold_wrapper {
+        width: 100%;
+    }
+    
+    #pdf {
+        width: 100%;
+    }
+  }
+  
