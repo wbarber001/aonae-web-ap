@@ -99,7 +99,6 @@ function generateOrigin() {
     stats.appendChild(attBonus);
     stats.appendChild(abilBonus);
     selectOrigin.value = origin.origin;
-    console.log("generateOrigin called");
   }
 }
 
@@ -123,7 +122,6 @@ function applyOrigin() {
       }
     }
   }
-  console.log("applyOrigin called");
 }
 
 //Function generateJob produces a random result assiged to an job stored in an array.
@@ -240,10 +238,9 @@ function applyClass() {
     }
     applyAttributeMod();
   }
-  console.log("applyClass called");
 }
 
-//Calculate stats
+//Calculate stats derived from attribute modifiers and speific abilities.
 function calculateStats() {
   let action = { type: "action", modifier: 0 };
   let reflex = { type: "reflex", modifier: 0 };
@@ -254,13 +251,13 @@ function calculateStats() {
   action.modifier = attributes[1].modifier + attributes[4].modifier;
   reflex.modifier = 6 + attributes[4].modifier;
   spirit.modifier = 6 + attributes[2].modifier;
-  //If the character posseses the ability evade apply the  modifier to reflex.
+  //If the character posseses the ability evade apply the modifier to reflex.
   for (i = 0; i < sortedCharAbilities.length; i++) {
     if (sortedCharAbilities[i].ability == "Evade") {
       reflex.modifier = reflex.modifier + sortedCharAbilities[i].modifier;
       reflex.modifier = reflex.modifier - attributes[4].modifier;
     }
-    //If the character posseses the ability ward apply the  modifier to spirit.
+    //If the character posseses the ability ward apply the modifier to spirit.
     if (sortedCharAbilities[i].ability == "Ward") {
       spirit.modifier = spirit.modifier + sortedCharAbilities[i].modifier;
       spirit.modifier = spirit.modifier - attributes[2].modifier;
@@ -279,7 +276,7 @@ function calculateStats() {
     hp.modifier = hp.modifier + 5;
     ase.modifier = ase.modifier + 10;
   }
-  //Push stats
+  //Push stats to charStats array.
   charStats.push(action);
   charStats.push(reflex);
   charStats.push(spirit);
@@ -296,7 +293,6 @@ function calculateStats() {
   spir.textContent = `SPIRIT: ${spirit.modifier}`;
   hits.textContent = `HP: ${hp.modifier}`;
   as.textContent = `ASE: ${ase.modifier}`;
-  console.log("calculateStats");
 }
 
 //Function applyAttributeMod applies updated attribute modifiers.
@@ -321,7 +317,6 @@ function applyAttributeMod() {
     sortedCharAbilities[i].modifier =
       sortedCharAbilities[i].modifier + attributes[4].modifier;
   }
-  console.log("applyAttributeMod called");
 }
 
 //Function getInfo gets character information and displays it on the page.
@@ -400,7 +395,6 @@ function getInfo() {
 /*When the user chooses a class the function generateMiracles lists the miracles available to them.
 generateMiracles removes the list after two miracles have been confirmed.*/
 function generateMiracles() {
-  console.log("generateMiracles called.")
   for (i = 0; i < miracles.length; i++) {
     //Creates a div for each miracle that belongs to the chosen class 
     if (miracles[i].type == pcClass.type) {
@@ -424,16 +418,20 @@ function generateMiracles() {
       miracleWrapper.appendChild(miracleCard);
     }
   }
+  //Get the miracle cards confirm buttons, listen for a click confirming a selection.
   let miracleConfirm = document.getElementsByClassName("confirm");
   for (i = 0; i < miracleConfirm.length; i++) {
     miracleConfirm[i].addEventListener("click", (event) => {
       let click = event.target;
+      //Get the specific miracle selected.
       let miracleSelected = click.closest(".miracle_card");
+      //Make sure no more than two miracles can be selected.
       for (i = 0; i < miracles.length; i++) {
         if (miracles[i].miracle == click.id && miracles[i].type == pcClass.type) {
           if (miracleCount >= 2) {
             console.log("You may choose no more than two miracles.");
           } else {
+            //Clear the Miracle Intro div, list the first miracle selected, instruct the user to choose a second miracle.
             miracleIntro.textContent = "";
             let newMiracle = document.createElement("p");
             newMiracle.id = "first_pick";
@@ -444,6 +442,7 @@ function generateMiracles() {
             miracleIntro.appendChild(newMiracle);
             miracleIntro.appendChild(newText);
             miracleWrapper.removeChild(miracleSelected);
+            //Update the character's miracle count.
             charMiracles.push(miracles[i]);
             miracleCount = miracleCount + 1;
             miracleSort();
@@ -457,24 +456,22 @@ function generateMiracles() {
 
 //Function miracleSort closes the miracle option section and list the chosen miracles.
 function miracleSort() {
-  console.log("miracleSort called.");
-
+  //Close the miracle intro section once two miracles are chosen.
   if (miracleCount == 2) {
     miracleIntro.style.display = "none";
     miracleWrapper.innerHTML = "";
-
-    // List the chosen miracles
+    //Iterate through charMiracles and create list of chosen miracles.
     for (i = 0; i < charMiracles.length; i++) {
-      //Create
+      //Create elements to display miracles.
       let miracleCard = document.createElement("div");
       miracleCard.className = "miracle_card";
       let cardName = document.createElement("h3");
       let text = document.createElement("p");
       text.className = "info";
-      //Assign
+      //Assign content.
       cardName.textContent = `${charMiracles[i].miracle}`;
       text.textContent = `${charMiracles[i].text}`;
-      //Append
+      //Append content to miracle elements.
       miracleCard.appendChild(cardName);
       miracleCard.appendChild(text);
       miracleWrapper.appendChild(miracleCard);
@@ -484,11 +481,13 @@ function miracleSort() {
 
 //Function getGold randomly generates starting amount of gold based on character path.
 function getGold() {
+  //Display gold section and generate a sum from 2d6.
   if (miracleCount == 2) {
     goldSection.style.display = "block";
     let display = document.getElementById("gold_wrapper");
     let result = rollTwoD6();
     pdfSection.style.display = "block";
+    //Multiply the roll result respective to the character's path and display the character's starting gold.
     if (pcClass.path == "strong") {
       gold = result * 5;
     } else if (pcClass.path == "wise") {
@@ -500,14 +499,13 @@ function getGold() {
 
 //Function toggleBox opens a description box when a drop down list item is highlighted.
 function toggleBox() {
+  //Close the box if the selection is on idex 0, otherwise open the box.
   if (selection.selectedIndex == 0) {
     box.style.display = "none";
   }
   else {
     box.style.display = "block";
   }
-  console.log(selection.selectedIndex);
-  console.log(box);
 }
 
 //Function openBox opens a description box when a relevant button is pressed.
@@ -517,12 +515,11 @@ function openBox() {
 
 //Function savePdf saves the character web page as a pdf file.
 function savePDF() {
+  //Open a print dialog to print the character sheet.
   window.print();
-  console.log("Ran savePDF")
 }
 
 /*VARIABLES*/
-
 //Variables for manipulation of attributes in the dom.
 const wisdom = document.getElementById("Wisdom");
 const awareness = document.getElementById("Awareness");
@@ -530,31 +527,36 @@ const soul = document.getElementById("Soul");
 const strength = document.getElementById("Strength");
 const agility = document.getElementById("Agility");
 
+//Get elements to control interface for choice of attributes, origin, job and class.
+//Intro and Attribute section elements
 const intro = document.getElementById("introduction_div");
-intro.style.transition = "all 2s";
-
 const stepOne = document.getElementById("step_one");
 const description = document.getElementById("attribute_description");
 const attributeButtons = document.getElementById("attribute_buttons");
 
+//Origin section elements
 const stepTwo = document.getElementById("step_two");
 const originSection = document.getElementById("origin");
 const originControls = document.getElementById("origin_controls");
 const originPick = document.getElementById("origin_pick");
 
+//Job section elements
 const stepThree = document.getElementById("step_three");
 const jobSection = document.getElementById("job");
 const jobControls = document.getElementById("job_controls");
 const jobPick = document.getElementById("job_pick");
 
+//Class section elements
 const stepFour = document.getElementById("step_four");
 const classSection = document.getElementById("class");
 const classControls = document.getElementById("class_controls");
 const classPick = document.getElementById("class_pick");
 
+//Get list elements to background and derived stats.
 const info = document.getElementsByClassName("info");
 const stats = document.getElementsByClassName("stats_ul");
 
+//Get div elements to display background and derived stats.
 const background = document.getElementById("background");
 const derived = document.getElementById("derived_stats");
 const abilityList = document.getElementById("ability_list");
@@ -564,6 +566,7 @@ const miracleWrapper = document.getElementById("miracle_wrapper");
 const goldSection = document.getElementById("gold");
 const pdfSection = document.getElementById("pdf");
 
+//Sections are closed until opened by user.
 description.style.display = "none";
 originSection.style.display = "none";
 originPick.style.display = "none";
@@ -578,6 +581,7 @@ miracleSection.style.display = "none";
 goldSection.style.display = "none";
 pdfSection.style.display = "none";
 
+//Global variables shared by various functions.
 let box;
 let selection;
 let attributes = [];
@@ -629,6 +633,7 @@ selectAttribute.addEventListener("change", () => {
   }
 });
 
+//Get "roll" button and listen for click.
 const rollAttributes = document.getElementById("roll_attributes");
 rollAttributes.addEventListener("click", () => {
   //Checks if there has been a previous roll, if so clears it.
@@ -654,26 +659,34 @@ rollAttributes.addEventListener("click", () => {
   soul.textContent = sou.modifier;
   strength.textContent = str.modifier;
   agility.textContent = agl.modifier;
-  //Pushes
+  //Stores new modifiers 
   attributes.push(wis);
   attributes.push(awar);
   attributes.push(sou);
   attributes.push(str);
   attributes.push(agl);
+  //Lets app know attribues have been rolled.
   attributesRolled = true;
 });
 
+//Get "confirm" button and listen for click.
 const confirmAttributes = document.getElementById("confirm_attributes");
 confirmAttributes.addEventListener("click", () => {
-  if (attributesRolled == true) {
+  //Let app know attribues are confirmed, close intro and attribute sections.
+  let nameField = document.getElementById('name_field');
+  if (attributesRolled == true && nameField.value !== '') {
     attributeCommit = true;
     intro.style.display = "none";
     stepOne.style.display = "none";
     attributeButtons.style.display = "none";
     box = originSection;
+    let newName = document.getElementById('new_name');
+    newName.textContent = nameField.value.toUpperCase();
+    nameField.style.display = 'none';
+    console.log(nameField.value);
     openBox();
   } else {
-    alert("Roll for your attribute modifiers");
+    alert("Name your character and roll your attribute modifiers");
   }
 });
 

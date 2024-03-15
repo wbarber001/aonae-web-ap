@@ -16,6 +16,10 @@ header {
     text-align: center;
 }
 
+#new_name {
+    font-size: 130%;
+}
+
 #container {
     margin: 0;
     padding: 2.5% 5%;
@@ -101,25 +105,6 @@ button {
     padding: 1.5%;
 }
 
-/*MIRACLE CARD STYLES*/
-.miracle_card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: fit-content;
-    margin: 2.5% auto;
-    padding: 3%;
-}
-
-.miracle_card .info {
-    height: 25%;
-}
-
-/* Miracle card button style */
-.confirm {
-    margin: 0;
-}
-
 /*BACKGROUND & STAT STYLES*/
 #attribute_description, #background, #derived_stats, #origin_pick, #job_pick, #class_pick {
     padding: 1.5%;
@@ -141,10 +126,49 @@ button {
 #first_pick {
     text-align: center;
     font-size: 150%;
-    margin-bottom: 3%;
+    margin-bottom: 1.5%;
     padding: 2.5% 0;
 }
 
+/*MIRACLE CARD STYLES*/
+#miracle_wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: fit-content;
+    width: 100%;
+}
+
+.miracle_card {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 30vh;
+    width: 80%;
+    margin: 2%;
+    padding: 3%;
+}
+
+.miracle_card h3 {
+    margin: 0 auto;
+    height: fit-content;
+    width: fit-content;
+}
+
+.miracle_card .info {
+    margin: 0 auto;
+}
+
+.miracle_card button.confirm {
+    margin: 0 auto;
+    width: 50%;
+    position: relative;
+    bottom: 0p;
+}
+
+/*GOLD SECTION*/
 #gold {
     height: fit-content;
     width: 100%;
@@ -163,6 +187,7 @@ button {
     margin: 0 auto 0 auto;
 }
 
+/*SAVE BUTTON SECTION*/
 #pdf {
     text-align: center;
     margin: 2.5% auto;
@@ -226,6 +251,14 @@ button:active {
         font-size: 160%;
         margin-bottom: .5%;
     }
+    
+    #name_field {
+        width: 70%;
+    }
+
+    #new_name {
+        font-size: 225%;
+    }
 
     p {
         font-size: 150%;
@@ -235,10 +268,6 @@ button:active {
     #container{
         margin: 0;
         padding: 1% 10%;
-    }
-    
-    #name_field {
-        width: 70%;
     }
 
     input, select {
@@ -280,6 +309,15 @@ button:active {
         font-size: 120%;
     }
 
+    #new_text {
+        font-size: 100%;
+    }
+
+    .miracle_card {
+        height: 30vh;
+        width: 85%;
+    }
+
     #gold_wrapper {
         width: 70%;
     }
@@ -296,7 +334,7 @@ button:active {
 
 @media screen and (min-width:1024px) {
     #container{
-        padding: 1% 25%;
+        padding: 1% 10%;
     }
 
     .modifiers {
@@ -305,6 +343,14 @@ button:active {
 
     #new_text {
         font-size: 100%;
+    }
+
+    #miracle_wrapper {
+        height: fit-content;
+    }
+
+    .miracle_card {
+        height: 40vh;
     }
 }
 
@@ -351,6 +397,10 @@ button:active {
     #attribute_description, #ability_list, #origin_pick, #class_pick, #gold {
         margin: 2.5% auto;
     }
+
+    .attributes h3, .modifiers {
+        font-size: 115%;
+    }
     
     button {
        display: none;
@@ -366,8 +416,8 @@ button:active {
     }
 
     #attribute_list .attributes h3 {
-        color: white;
-        background-color: brown;
+        color: brown;
+        background-color: transparent;
         margin: 8% 0 5% 0;
     }
    
@@ -387,6 +437,19 @@ button:active {
     
     .stats_li, #ability_wrapper li {
         font-size: 80%;
+    }
+
+    #miracle_wrapper {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: 100%;
+    }
+    
+    .miracle_card {
+        min-height: 45%;
+        width: fit-content;
+        margin: 1.5% auto;
     }
 
     #gold_wrapper {

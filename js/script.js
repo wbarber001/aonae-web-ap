@@ -817,7 +817,7 @@ const miracles = [
       "This tactic channels ASE into superhuman Strength. Spend ASE to add a bonus to Strength. Bonuses last until your next action. 1 ASE = +1, 3 ASE = +3, 5 ASE = +5",
   },
   {
-    miracle: "MAWU'S Strength",
+    miracle: "MAWU'S STRENGTH",
     type: "Soldier",
     text:
       "The Soldier strikes the ground sending surrounding foes flying away. To use roll 2d6 + strike vs the highest target reflex. Outcome equals damage and ASE spent increases the number affected; 1 ASE = 2 foes, 3 ASE = 4 foes, 5 ASE = 6 foes",
